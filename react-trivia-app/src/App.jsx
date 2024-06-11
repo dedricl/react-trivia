@@ -7,6 +7,7 @@ function App() {
     <>
       <h1>Trivia 2024 Edition</h1>
       <Trivia></Trivia>
+
       <Footer />
     </>
   );

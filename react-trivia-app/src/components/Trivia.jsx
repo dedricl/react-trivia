@@ -154,15 +154,21 @@ export const Trivia = () => {
   let [question, setQuestion] = useState(triviaData[index]);
   let [lock, setLock] = useState(false);
   let [score, setScore] = useState(0);
-
+  let listItem = document.querySelectorAll("li");
+  let result = document.querySelector(".result");
+  let container = document.querySelector(".container");
   const nextButton = () => {
     if (index === triviaData.length - 1) {
-      alert("Your score is " + score + " out of " + triviaData.length);
-    }
-    if (lock === true) {
+      result.style.display = "block";
+      container.style.display = "none";
+    } else if (lock === true) {
       setIndex(++index);
       setQuestion(triviaData[index]);
       setLock(false);
+      for (let index = 0; index < listItem.length; index++) {
+        listItem[index].classList.remove("correct");
+        listItem[index].classList.remove("wrong");
+      }
     }
   };
 
@@ -171,64 +177,71 @@ export const Trivia = () => {
       setIndex(--index);
       setQuestion(triviaData[index]);
       setLock(false);
+      for (let index = 0; index < listItem.length; index++) {
+        listItem[index].classList.remove("correct");
+        listItem[index].classList.remove("wrong");
+      }
     }
   };
 
   const checkAnswer = (e, ans) => {
     if (lock === false) {
       if (question.answer === ans) {
-        // e.target.classList.add("correct");
-        alert("Correct!");
+        e.target.classList.add("correct");
         setScore((prev) => prev + 1);
         setLock(true);
       } else {
-        // e.target.classList.add("wrong");
-        alert("Wrong!");
+        e.target.classList.add("wrong");
         setLock(true);
       }
     }
   };
 
   return (
-    <div className="container">
-      <h2>
-        {index + 1}. {question.question}
-      </h2>
-      <ul>
-        <li
-          onClick={(e) => {
-            checkAnswer(e, question.a);
-          }}
-        >
-          {question.a}
-        </li>
-        <li
-          onClick={(e) => {
-            checkAnswer(e, question.b);
-          }}
-        >
-          {question.b}
-        </li>
-        <li
-          onClick={(e) => {
-            checkAnswer(e, question.c);
-          }}
-        >
-          {question.c}
-        </li>
-      </ul>
-      <div className="button-container">
-        <button className="prev" onClick={prevButton}>
-          Previous
-        </button>
-        <button className="next" onClick={nextButton}>
-          Next
-        </button>
+    <>
+      <div className="result">
+        Your score is {score} out of {triviaData.length}
       </div>
+      <div className="container">
+        <h2>
+          {index + 1}. {question.question}
+        </h2>
+        <ul>
+          <li
+            onClick={(e) => {
+              checkAnswer(e, question.a);
+            }}
+          >
+            {question.a}
+          </li>
+          <li
+            onClick={(e) => {
+              checkAnswer(e, question.b);
+            }}
+          >
+            {question.b}
+          </li>
+          <li
+            onClick={(e) => {
+              checkAnswer(e, question.c);
+            }}
+          >
+            {question.c}
+          </li>
+        </ul>
+        <div className="button-container">
+          <button className="prev" onClick={prevButton}>
+            Previous
+          </button>
+          <button className="next" onClick={nextButton}>
+            Next
+          </button>
+        </div>
 
-      <p className="num-questions">
-        {index + 1} out of {triviaData.length} questions
-      </p>
-    </div>
+        <p className="num-questions">
+          {index + 1} out of {triviaData.length} questions
+        </p>
+      </div>
+    </>
   );
 };
