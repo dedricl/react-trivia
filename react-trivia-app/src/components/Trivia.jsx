@@ -178,6 +178,7 @@ export const Trivia = () => {
       setIndex(--index);
       setQuestion(triviaData[index]);
       setLock(false);
+      setScore((prev) => prev - 1);
       for (let index = 0; index < listItem.length; index++) {
         listItem[index].classList.remove("correct");
         listItem[index].classList.remove("wrong");
