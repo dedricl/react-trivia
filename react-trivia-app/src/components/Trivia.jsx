@@ -137,7 +137,7 @@ export const Trivia = () => {
         "What is it called when a basketball player catches the ball in mid air and dunks?",
       a: "Assist",
       b: "Pick and Row",
-      c: " Alley-oop",
+      c: "Alley-oop",
       answer: "Alley-oop",
     },
     {
@@ -157,8 +157,9 @@ export const Trivia = () => {
   let listItem = document.querySelectorAll("li");
   let result = document.querySelector(".result");
   let container = document.querySelector(".container");
+
   const nextButton = () => {
-    if (index === triviaData.length - 1) {
+    if (index + 1 === triviaData.length) {
       result.style.display = "block";
       container.style.display = "none";
     } else if (lock === true) {
