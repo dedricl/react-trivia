@@ -13,7 +13,7 @@ body {
 .container {
   width: 100%;
   max-width: 640px;
-  margin: 0 auto;
+  margin: 100px auto;
   border: 2px solid black;
   display: flex;
   flex-direction: column;
@@ -31,7 +31,7 @@ h2 {
   margin: 20px 0;
 }
 
-.container li {
+li {
   display: flex;
   align-items: center;
   height: 70px;
@@ -42,6 +42,10 @@ h2 {
   font-size: 20px;
   font-weight: bold;
   padding-left: 8px;
+}
+
+li:hover {
+  background-color: lightblue;
 }
 
 .num-questions {
@@ -67,16 +71,27 @@ h1 {
 }
 
 .correct {
-  background-color: red;
+  background-color: green;
   color: white;
 }
 
 .wrong {
-  background-color: black;
+  background-color: red;
+  color: white;
+}
+.open {
+  display: block;
 }
 
-.result {
+.hidden {
   display: none;
+}
+
+.score {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
   text-align: center;
   font-size: 24px;
   margin-top: 100px;
@@ -95,7 +110,7 @@ button {
 }
 
 .next {
-  background-color: green;
+  background-color: purple;
 }
 
 footer {
@@ -105,6 +120,6 @@ footer {
   display: flex;
   flex-direction: column;
   justify-content: end;
-  padding: 100px 0 0 0;
+  padding: 50px 0;
   font-weight: bold;
 }
